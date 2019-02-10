@@ -37,6 +37,12 @@ public:
 protected:
 	virtual void BeginPlay();
 
+	virtual void PostInitProperties() override;
+
+	virtual void Landed(const FHitResult& Hit) override;
+
+	virtual void Jump() override;
+
 public:
 	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
@@ -52,18 +58,32 @@ public:
 
 	/** Projectile class to spawn */
 	UPROPERTY(EditDefaultsOnly, Category=Projectile)
-		TSubclassOf<class AStealthGameProjectile> ProjectileClass;
-
-	/** Sound to play each time we fire */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Gameplay)
-		class USoundBase* FireSound;
+		TSubclassOf<class AStealthGameProjectile> ProjectileClass = nullptr;
 
 	/** AnimMontage to play each time we fire */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
-		class UAnimMontage* FireAnimation;
+		class UAnimMontage* FireAnimation = nullptr;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Gameplay")
 		bool bIsCarryingObjective = false;
+
+	////////////////////////////////////////////////////////////
+	// Sounds
+		/** Sound to play each time we fire */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+		class USoundBase* FireSound = nullptr;
+
+	/** Sound to play each time we jump */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+		class USoundBase* JumpSound = nullptr;
+
+	/** Sound to play each time we land */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+		class USoundBase* LandSound = nullptr;
+
+	/** Sound to play each time we are in pain */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+		class USoundBase* PainSound = nullptr;
 
 protected:
 	

@@ -7,6 +7,7 @@
 #include "LaunchPad.generated.h"
 
 class UBoxComponent;
+class USoundBase;
 
 UCLASS()
 class STEALTHGAME_API ALaunchPad : public AActor
@@ -44,4 +45,7 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, Category = "LaunchPad")
 		UParticleSystem* ActivateLaunchPadEffect = nullptr;
+
+	UPROPERTY(EditDefaultsOnly, Category = "SoundFX")
+		USoundBase* LaunchSound = nullptr;
 };

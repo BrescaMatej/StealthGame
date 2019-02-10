@@ -32,6 +32,9 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "FX")
 		UParticleSystem* PickupFX = nullptr;
 
+	UPROPERTY(EditDefaultsOnly, Category = "FX")
+		USoundBase* PickupSound = nullptr;
+
 	void PlayEffects();
 
 public:	

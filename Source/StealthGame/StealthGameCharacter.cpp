@@ -63,6 +63,30 @@ void AStealthGameCharacter::BeginPlay()
 	FP_Gun->AttachToComponent(Mesh1P, FAttachmentTransformRules(EAttachmentRule::SnapToTarget, true), TEXT("GripPoint"));
 }
 
+void AStealthGameCharacter::PostInitProperties()
+{
+	Super::PostInitProperties();
+}
+
+void AStealthGameCharacter::Landed(const FHitResult & Hit)
+{
+	Super::Landed(Hit);
+	if (LandSound)
+	{
+		UGameplayStatics::PlaySound2D(this, LandSound);
+	}
+}
+
+void AStealthGameCharacter::Jump()
+{
+	Super::Jump();
+	if (JumpSound)
+	{
+		UGameplayStatics::PlaySound2D(this, JumpSound);
+	}
+	
+}
+
 //////////////////////////////////////////////////////////////////////////
 // Input
 
@@ -101,7 +125,7 @@ void AStealthGameCharacter::OnFire()
 		{
 			const FRotator SpawnRotation = GetControlRotation();
 			// MuzzleOffset is in camera space, so transform it to world space before offsetting from the character location to find the final muzzle position
-			const FVector SpawnLocation = ((FP_MuzzleLocation != nullptr) ? FP_MuzzleLocation->GetComponentLocation() : GetActorLocation()) + SpawnRotation.RotateVector(GunOffset);
+			const FVector SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
 
 			//Set Spawn Collision Handling Override
 			FActorSpawnParameters ActorSpawnParams;

@@ -24,6 +24,9 @@ class AStealthGameProjectile : public AActor
 	UPROPERTY(EditDefaultsOnly , Category = "FX")
 		UParticleSystem* ExplosionEffect = nullptr;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Sound")
+		USoundBase* ImpactSound = nullptr;
+
 public:
 	AStealthGameProjectile();
 

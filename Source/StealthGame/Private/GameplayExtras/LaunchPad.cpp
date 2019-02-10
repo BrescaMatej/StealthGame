@@ -47,11 +47,22 @@ void ALaunchPad::OverlapLaunchPad(
 		OtherCharacter->LaunchCharacter(LaunchVelocity, true, true);
 
 		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ActivateLaunchPadEffect, GetActorLocation());
+
+		if (LaunchSound)
+		{
+			UGameplayStatics::PlaySound2D(this, LaunchSound);
+		}
+		
 	}
 	else if (OtherComp && OtherComp->IsSimulatingPhysics())
 	{
 		OtherComp->AddImpulse(LaunchVelocity, NAME_None, true);
 
 		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ActivateLaunchPadEffect, GetActorLocation());
+
+		if (LaunchSound)
+		{
+			UGameplayStatics::PlaySoundAtLocation(this, LaunchSound, GetActorLocation());
+		}
 	}
 }

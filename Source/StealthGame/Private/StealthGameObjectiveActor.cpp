@@ -39,6 +39,11 @@ void AStealthGameObjectiveActor::PlayEffects()
 	{
 		UGameplayStatics::SpawnEmitterAtLocation(this, PickupFX, GetActorLocation());
 	}
+
+	if (PickupSound != nullptr)
+	{
+		UGameplayStatics::PlaySoundAtLocation(this, PickupSound, GetActorLocation());
+	}
 }
 
 void AStealthGameObjectiveActor::NotifyActorBeginOverlap(AActor * OtherActor)

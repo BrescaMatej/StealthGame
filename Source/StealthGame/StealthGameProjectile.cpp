@@ -45,5 +45,9 @@ void AStealthGameProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherAc
 	{
 		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ExplosionEffect, GetActorLocation());
 	}
+	if (ImpactSound != NULL)
+	{
+		UGameplayStatics::PlaySoundAtLocation(this, ImpactSound, GetActorLocation());
+	}
 	
 }
