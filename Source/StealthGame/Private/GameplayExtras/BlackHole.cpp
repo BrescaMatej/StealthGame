@@ -37,7 +37,13 @@ void ABlackHole::PostInitProperties()
 	InnerSphereComp->OnComponentBeginOverlap.AddDynamic(this, &ABlackHole::OverlapInnerSphere);
 }
 
-void ABlackHole::OverlapInnerSphere(UPrimitiveComponent * OverlappedComponent, AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
+void ABlackHole::OverlapInnerSphere(
+	UPrimitiveComponent * OverlappedComponent,
+	AActor * OtherActor,
+	UPrimitiveComponent * OtherComp,
+	int32 OtherBodyIndex,
+	bool bFromSweep,
+	const FHitResult & SweepResult)
 {
 	if (OtherActor)
 	{
