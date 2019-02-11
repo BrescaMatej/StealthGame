@@ -85,6 +85,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 		class USoundBase* PainSound = nullptr;
 
+
 protected:
 	
 	/** Fires a projectile. */

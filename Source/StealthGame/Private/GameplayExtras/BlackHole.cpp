@@ -47,7 +47,7 @@ void ABlackHole::OverlapInnerSphere(
 {
 	if (OtherActor)
 	{
-		OtherActor->Destroy();
+		OtherComp->AddRadialForce(GetActorLocation(), 10000.0f, 18000.0f, ERadialImpulseFalloff::RIF_Constant, false);
 	}
 }
 
@@ -65,7 +65,7 @@ void ABlackHole::Tick(float DeltaTime)
 		if (PrimComp && PrimComp->IsSimulatingPhysics())
 		{
 			const float SphereRadius = OuterSphereComp->GetScaledSphereRadius();
-			const float ForceStrength = -2000.0f;
+			const float ForceStrength = InnerSphereComp->IsOverlappingActor(PrimComp->GetOwner()) ? 180000.f : -3000.f ;
 
 			PrimComp->AddRadialForce(GetActorLocation(), SphereRadius, ForceStrength, ERadialImpulseFalloff::RIF_Constant, true);
 		}

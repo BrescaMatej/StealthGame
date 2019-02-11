@@ -125,7 +125,9 @@ void AStealthGameCharacter::OnFire()
 		{
 			const FRotator SpawnRotation = GetControlRotation();
 			// MuzzleOffset is in camera space, so transform it to world space before offsetting from the character location to find the final muzzle position
-			const FVector SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
+			//const FVector SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);]
+
+			const FVector SpawnLocation = (GetMesh()->GetSocketLocation(FName("Socket_Hand_R"))) + (SpawnRotation.RotateVector(GunOffset));
 
 			//Set Spawn Collision Handling Override
 			FActorSpawnParameters ActorSpawnParams;
