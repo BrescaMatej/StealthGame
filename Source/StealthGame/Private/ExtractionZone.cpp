@@ -57,7 +57,7 @@ void AExtractionZone::HandleOverlap(
 		AStealthGameGameMode* GameMode = Cast<AStealthGameGameMode>(GetWorld()->GetAuthGameMode());
 		if (GameMode)
 		{
-			GameMode->CompleteMission(MyPawn);
+			GameMode->CompleteMission(MyPawn, true);
 		}
 	}
 	else

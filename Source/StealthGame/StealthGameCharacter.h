@@ -30,6 +30,8 @@ class AStealthGameCharacter : public ACharacter
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 		class UCameraComponent* FirstPersonCameraComponent;
 
+	
+
 
 public:
 	AStealthGameCharacter();
@@ -84,6 +86,9 @@ public:
 	/** Sound to play each time we are in pain */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 		class USoundBase* PainSound = nullptr;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "AI")
+		class UPawnNoiseEmitterComponent* NoiseEmitterComponent = nullptr;
 
 
 protected:

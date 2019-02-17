@@ -17,7 +17,7 @@ AStealthGameGameMode::AStealthGameGameMode()
 	HUDClass = AStealthGameHUD::StaticClass();
 }
 
-void AStealthGameGameMode::CompleteMission(APawn* InstigatorPawn)
+void AStealthGameGameMode::CompleteMission(APawn* InstigatorPawn, bool bMissionSucess)
 {
 	if (InstigatorPawn)
 	{
@@ -44,6 +44,6 @@ void AStealthGameGameMode::CompleteMission(APawn* InstigatorPawn)
 			UE_LOG(LogTemp, Warning, TEXT("SpectatingViewpointClass is nullptr. Please update GameMode class with valid subclass!"));
 		}
 	}
-	OnMissionCompleted(InstigatorPawn);
+	OnMissionCompleted(InstigatorPawn, bMissionSucess);
 	
 }

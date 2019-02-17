@@ -8,6 +8,7 @@
 #include "Components/InputComponent.h"
 #include "GameFramework/InputSettings.h"
 #include "Kismet/GameplayStatics.h"
+#include "Components/PawnNoiseEmitterComponent.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogFPChar, Warning, All);
 
@@ -52,6 +53,8 @@ AStealthGameCharacter::AStealthGameCharacter()
 
 	// Default offset from the character location for projectiles to spawn
 	GunOffset = FVector(100.0f, 0.0f, 10.0f);
+
+	NoiseEmitterComponent = CreateDefaultSubobject<UPawnNoiseEmitterComponent>(TEXT("NoiseEmitterComponent"));
 }
 
 void AStealthGameCharacter::BeginPlay()
@@ -74,6 +77,7 @@ void AStealthGameCharacter::Landed(const FHitResult & Hit)
 	if (LandSound)
 	{
 		UGameplayStatics::PlaySound2D(this, LandSound);
+		PawnMakeNoise(1.0f, GetActorLocation(), true, this);
 	}
 }
 
@@ -132,6 +136,7 @@ void AStealthGameCharacter::OnFire()
 			//Set Spawn Collision Handling Override
 			FActorSpawnParameters ActorSpawnParams;
 			ActorSpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButDontSpawnIfColliding;
+			ActorSpawnParams.Instigator = this;
 
 			// spawn the projectile at the muzzle
 			World->SpawnActor<AStealthGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
